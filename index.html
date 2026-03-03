@@ -24,6 +24,7 @@
       property="og:image"
       content="https://assets.st-note.com/production/uploads/images/255734967/rectangle_large_type_2_5f1a5fefad23a547494de28664c21246.png?fit=bounds&quality=85&width=1280"
     />
+    <meta property="og:url" content="https://uiui-1028.github.io/redirect_html/" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -43,13 +44,21 @@
     <!-- Bot / Indexing control -->
     <meta name="robots" content="noindex, nofollow, noarchive" />
 
-    <!-- Redirect (meta refresh + JS) -->
-    <meta http-equiv="refresh" content="0; url=https://ankiweb.net/shared/info/1917298065" />
-    <link rel="canonical" href="https://ankiweb.net/shared/info/1917298065" />
+    <link rel="canonical" href="https://uiui-1028.github.io/redirect_html/" />
 
     <script>
       (function () {
         var url = "https://ankiweb.net/shared/info/1917298065";
+
+        // note等のOGP取得Botが meta refresh を追従してしまうケースがあるため、
+        // meta refresh は JS で動的に追加する（BotはJSを実行しない想定）。
+        try {
+          var meta = document.createElement("meta");
+          meta.setAttribute("http-equiv", "refresh");
+          meta.setAttribute("content", "0; url=" + url);
+          document.head.appendChild(meta);
+        } catch (e) {}
+
         try {
           window.location.replace(url);
         } catch (e) {
